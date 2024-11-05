@@ -7,7 +7,32 @@
     <title>Word Challenge!</title>
 </head>
 <body>
+    <header>
+        <nav>
+            <button>Restart</button>
+        </nav>
+        <h1>Word Challenge</h1>
+        <h2>Guess the word based on the description</h2>
+    </header>
+    <main class="game-area">
+        <div class="player-level">
+            <h3>Level:</h3>
+            <p class="level-counter"></p>
+            <h3>Tries:</h3>
+            <p class="tries-counter"></p>
+            <p class="message"></p>
+        </div>
+        <div class="player-input-container">
+            <input class="player-input" type="text" placeholder="Answer"></input>
+            <button>Submit</button>
+        </div>
+        <div class="word-description-container">
+            <h3>Description:</h3>
+            <p class="description"></p>
+        </div>
+    </main>
+    <button id="play-button">PLAY</button>
     
-    <script src="./js/app.js"></script>
+    <script src="./js/app.js" type="module"></script>
 </body>
 </html>

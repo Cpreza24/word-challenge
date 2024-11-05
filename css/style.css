@@ -1,0 +1,20 @@
+player-input-container {
+    background-color: blue;
+    display: flex;
+    justify-content: l;
+
+}
+
+word-description-container {
+    background-color: orange;
+    display: flex;
+}
+
+.game-area {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.hidden {
+    display: none;
+}
