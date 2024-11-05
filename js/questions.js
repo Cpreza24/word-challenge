@@ -13,8 +13,36 @@ const levelOneQuestions = [
         question: 'Domesticated felines that cause chaos',
         answer: 'cat',
         level: 1,
+    },
+    {
+        question: 'The king of the jungle',
+        answer: 'lion',
+        level: 1,
     }
 ];
 
-export { levelOneQuestions };
+const levelTwoQuestions = [
+    {
+        question: 'A game console the presedesd the nintendo 64',
+        answer: 'super nintendo',
+        level: 2
+    },
+    {
+        question: 'The most popular game on the original Xbox',
+        answer: 'halo',
+        level: 2,
+    },
+    {
+        question: 'Battle Royale style game that became popular in 2018',
+        answer: 'fortnite',
+        level: 2,
+    },
+    {
+        question: 'Sonys original handheld gaming console',
+        answer: 'psp',
+        level: 2,
+    }
+]
+
+export { levelOneQuestions, levelTwoQuestions };
 
