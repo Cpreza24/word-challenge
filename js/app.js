@@ -1,21 +1,27 @@
 import { questionsObj } from './questions.js';
 //console.log(levelTwoQuestions);
 
+const body = document.querySelector('body');
 const gameArea = document.querySelector('.game-area'); 
 const playGameButton = document.getElementById('play-button');
 const wordDescription = document.querySelector('.description');
 const levelCounter = document.querySelector('.level-counter');
 const triesCounter = document.querySelector('.tries-counter');
-const playerInput = document.querySelector('.player-input');
 const submitBtn = document.querySelector('#submit-button');
 const submitForm = document.querySelector('.player-submit-form');
 const randomNum = Math.floor(Math.random() * 3);
-const levelOneArr = [];
-const levelTwoArr = [];
-const levelThreeArr = [];
-const levelFourArr = [];
-const levelFiveArr = [];
+const gameOverContainer = document.createElement('div');
+const restartBtn = document.createElement('button');
+const gameOverMsg = document.createElement('p');
 
+let playerInput = document.querySelector('.player-input');
+let levelOneArr = [];
+let levelTwoArr = [];
+let levelThreeArr = [];
+let levelFourArr = [];
+let levelFiveArr = [];
+
+let correctAnswer = false;
 let playerLevelToNum;
 let playerTries = 5;
 let playerAnswer = '';
@@ -23,6 +29,19 @@ let playerAnswer = '';
 // shows the user a play button when the game is loaded and clears any previous inputs and levels
 // restarts the game starting from level 1 and tries resets. 
 function init() {
+    playerTries = 5;
+    correctAnswer = false;
+    playerAnswer = '';
+    playerInput.value = '';
+    levelOneArr = [];
+    levelTwoArr = [];
+    levelThreeArr = [];
+    levelFourArr = [];
+    levelFiveArr = [];
+    gameArea.classList.remove('hidden');
+    gameOverContainer.remove();
+    levelCounter.innerText = 1;
+    triesCounter.innerText = playerTries;
     console.log('game start');
     playerInput.focus();
     renderGame();
@@ -124,7 +143,7 @@ function renderGame() {
 
 const handlePlayerInput = e => {
     playerAnswer = e.target.value;
-    console.log(playerAnswer);
+    //console.log(playerAnswer);
     //playerInput.value = ''
     return playerAnswer;
 }
@@ -154,46 +173,59 @@ const handlePlayerInput = e => {
 // }
 
 function handleSubmit(e) {
-    if (playerAnswer === levelOneArr[randomNum].answer) {
-      //levelQuestions = [];
+    handlePlayerAnswer()
+    handleLoss();
+}
+
+function handlePlayerAnswer() {
+    let lowerCaseAnswer = playerAnswer.toLowerCase();
+    //handleCorrectAnswer();
+    // filter the questionsObj to include only the level 1 questions. 
+    // display the level 1 object. 
+    const filteredQuestions = questionsObj.filter(q => q.level === playerLevelToNum);
+    console.log(`answer: ${filteredQuestions[randomNum].answer}`);
+    //compate the displayed question to the answer of that object.
+    if (lowerCaseAnswer === filteredQuestions[randomNum].answer) {
         playerLevelToNum += 1;
         levelCounter.innerText = playerLevelToNum;
         playerInput.value = '';
+        correctAnswer = true;
         displayQuestion();
-        console.log('correct!')  
-        } else if (playerAnswer === levelTwoArr[randomNum].answer) {
-            playerLevelToNum += 1;
-            levelCounter.innerText = playerLevelToNum;
-            playerInput.value = '';
-            displayQuestion();
-            console.log('correct again!');
-        } else if (playerAnswer === levelThreeArr[randomNum].answer) {
-            playerLevelToNum += 1;
-            levelCounter.innerText = playerLevelToNum;
-            playerInput.value = '';
-            displayQuestion();
-            console.log('correct for three!');
-        } else if (playerAnswer === levelFourArr[randomNum].answer) {
-            playerLevelToNum += 1;
-            levelCounter.innerText = playerLevelToNum;
-            playerInput.value = '';
-            displayQuestion();
-            console.log('correct for four!');
-        } else if (playerAnswer === levelFiveArr[randomNum].answer) {
-            playerLevelToNum += 1;
-            levelCounter.innerText = playerLevelToNum;
-            playerInput.value = '';
-            displayQuestion();
-            console.log('correct for five!');
-        }
-        playerInput.focus();
+        console.log(correctAnswer);
+    } else if (lowerCaseAnswer !== filteredQuestions[randomNum].answer && playerAnswer !== ''){
+        correctAnswer = false;
+        playerTries -= 1;
+        triesCounter.innerText = playerTries;
+        playerInput.value = '';
+        console.log('try again')
+    } else if (playerAnswer === '') {
+        console.log('please enter an answer')
     }
+    playerInput.focus();
+}
 
 function handleLoss() {
     //if tries reaches 0 the game is over
     //shows the user a game over message and what level they reached in the game.
     //also shoes a Play Again? button that will start the game from the beginning.
-    //hides the game board  
+    //hides the game board behind the game over message
+    if (playerTries > 0) {
+        return;
+    }
+        else if (playerTries === 0) {
+            restartBtn.setAttribute('id', 'restart-button');
+            restartBtn.innerText = 'Play Again?'
+            gameOverMsg.setAttribute('id', 'game-over-message');
+            gameOverMsg.innerText = 'GameOver!';
+            gameOverContainer.setAttribute('id', 'game-over-container');
+            gameOverContainer.classList.remove('hidden');
+            body.appendChild(gameOverContainer);
+            gameArea.classList.add('hidden');
+            gameOverContainer.appendChild(gameOverMsg);
+            gameOverContainer.appendChild(restartBtn);
+            console.log('Game Over!', gameOverMsg);
+            restartBtn.addEventListener('click', init);
+        }
 }
 
 //Starts the game
@@ -216,4 +248,4 @@ playerInput.addEventListener('keyup', handlePlayerInput);
 submitBtn.addEventListener('click', handleSubmit);
 submitForm.addEventListener('submit', e => {
     e.preventDefault();
-})
+});

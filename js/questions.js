@@ -46,7 +46,7 @@ const questionsObj = [
     },
     {
         question: 'The yellow pup who lives with Mickey and Minnie',
-        answer: 'Pluto',
+        answer: 'pluto',
         level: 3,
     },
     {
