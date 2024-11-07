@@ -1,5 +1,5 @@
-import { levelOneQuestions, levelTwoQuestions } from './questions.js';
-console.log(levelTwoQuestions);
+import { questionsObj } from './questions.js';
+//console.log(levelTwoQuestions);
 
 const gameArea = document.querySelector('.game-area'); 
 const playGameButton = document.getElementById('play-button');
@@ -8,9 +8,15 @@ const levelCounter = document.querySelector('.level-counter');
 const triesCounter = document.querySelector('.tries-counter');
 const playerInput = document.querySelector('.player-input');
 const submitBtn = document.querySelector('#submit-button');
-const randomNum = Math.floor(Math.random() * 4) + 1;
+const submitForm = document.querySelector('.player-submit-form');
+const randomNum = Math.floor(Math.random() * 3);
+const levelOneArr = [];
+const levelTwoArr = [];
+const levelThreeArr = [];
+const levelFourArr = [];
+const levelFiveArr = [];
 
-let playerLevel;
+let playerLevelToNum;
 let playerTries = 5;
 let playerAnswer = '';
 
@@ -19,21 +25,93 @@ let playerAnswer = '';
 function init() {
     console.log('game start');
     playerInput.focus();
-    renderGame()
-    showQuestion();
+    renderGame();
+    displayQuestion();
 
 }
 
 init();
 
-function showQuestion() {
-    playerLevel = parseInt(levelCounter.innerText);
-    if (playerLevel === 1) {
-        //let levelOne = levelOneQuestions.map((ques, index) => {ques[index]}) 
-        //console.log(levelOne);
-        wordDescription.innerText = levelOneQuestions[randomNum - 1].question;
-    } else if (playerLevel === 2) {
-        wordDescription.innerText = levelTwoQuestions[randomNum - 1].question
+// function showQuestion() {
+//     playerLevel = parseInt(levelCounter.innerText);
+//     if (playerLevel === 1) {
+//         //let levelOne = levelOneQuestions.map((ques, index) => {ques[index]}) 
+//         //console.log(levelOne);
+//         wordDescription.innerText = levelOneQuestions[randomNum - 1].question;
+//     } else if (playerLevel === 2) {
+//         //wordDescription.innerText = levelTwoQuestions[randomNum - 1].question
+//     }
+// };
+
+// function showQuestion() {
+//     playerLevelToNum = parseInt(levelCounter.innerText);
+//     questionsObj.forEach((ques) => {
+//     //levelOneArr = [];
+//         //console.log(question);
+//         if (playerLevelToNum === 1) {
+//             if (ques.level === 1) {
+//                 levelOneArr.push(ques);
+//                 wordDescription.innerText = levelOneArr;
+//                 console.log(levelOneArr);
+//             };
+//         } else if (playerLevelToNum === 2) {
+//             if (question.level === 2) {
+//                 console.log(question);
+//             }
+//         }
+//     })
+// }
+
+function displayQuestion() {
+    playerLevelToNum = parseInt(levelCounter.innerText);
+    //console.log(playerLevelToNum)
+    if (playerLevelToNum === 1) {
+      //push the objects with a level of 1 into the levelsQuestions array
+        for (const ques of questionsObj) {
+            if (ques.level === 1) {
+            levelOneArr.push(ques);
+        }
+        //console.log(levelQuestions.length);
+        }
+        wordDescription.innerText = levelOneArr[randomNum].question
+        //console.log(levelOneArr[randomNum].answer);
+    } else if (playerLevelToNum === 2) {
+      //levelOneArr = [];
+        for (const ques of questionsObj) {
+        //levelsQuestions = [];
+        if (ques.level === 2) {
+            levelTwoArr.push(ques) 
+        }
+        }
+        wordDescription.innerText = levelTwoArr[randomNum].question
+        //console.log(wordDescription.innerText, levelTwoArr);
+    } else if (playerLevelToNum === 3) {
+        for (const ques of questionsObj) {
+        //levelsQuestions = [];
+        if (ques.level === 3) {
+            levelThreeArr.push(ques) 
+        }
+        }
+        wordDescription.innerText = levelThreeArr[randomNum].question
+        //console.log(wordDescription.innerText, levelThreeArr);
+    } else if (playerLevelToNum === 4) {
+        for (const ques of questionsObj) {
+        //levelsQuestions = [];
+        if (ques.level === 4) {
+            levelFourArr.push(ques) 
+        }
+        }
+        wordDescription.innerText = levelFourArr[randomNum].question
+        //console.log(wordDescription.innerText, levelThreeArr);
+    } else if (playerLevelToNum === 5) {
+        for (const ques of questionsObj) {
+        //levelsQuestions = [];
+        if (ques.level === 5) {
+            levelFiveArr.push(ques) 
+        }
+        }
+        wordDescription.innerText = levelFiveArr[randomNum].question
+        console.log(wordDescription.innerText, levelFiveArr);
     }
 };
 
@@ -55,25 +133,61 @@ const handlePlayerInput = e => {
 //conditional to see if the string value of playerAnswer is equal to the question thats displayed answer
 
 //When the player submits the correct answer, the level increases and the level two questions are displayed. 
-function handleSubmit() {
-    console.log(playerAnswer, playerInput.value);
-    let lowerCaseAnswer = playerAnswer.toLowerCase();
-    if (lowerCaseAnswer === levelOneQuestions[randomNum - 1].answer && playerInput.value !== '') {
+// function handleSubmit() {
+//     console.log(playerAnswer, playerInput.value);
+//     let lowerCaseAnswer = playerAnswer.toLowerCase();
+//     if (lowerCaseAnswer === levelOneQuestions[randomNum - 1].answer && playerInput.value !== '') {
+//         playerInput.value = '';
+//         playerAnswer = '';
+//         console.log(playerInput.value);
+//         playerLevelToNum += 1;
+//         levelCounter.innerText = playerLevelToNum;
+//         showQuestion();
+//         console.log(playerLevelToNum, 'correct!');
+//     } else if (lowerCaseAnswer !== levelOneQuestions[randomNum - 1].answer || playerInput.value === '') {
+//         playerInput.value = '';
+//         playerAnswer = '';
+//         playerTries -= 1;
+//         playerLevel.innerText = playerTries;
+//         console.log('try again')
+//     }
+// }
+
+function handleSubmit(e) {
+    if (playerAnswer === levelOneArr[randomNum].answer) {
+      //levelQuestions = [];
+        playerLevelToNum += 1;
+        levelCounter.innerText = playerLevelToNum;
         playerInput.value = '';
-        playerAnswer = '';
-        console.log(playerInput.value);
-        playerLevel += 1;
-        levelCounter.innerText = playerLevel;
-        showQuestion();
-        console.log(playerLevel, 'correct!');
-    } else if (lowerCaseAnswer !== levelOneQuestions[randomNum - 1].answer || playerInput.value === '') {
-        playerInput.value = '';
-        playerAnswer = '';
-        playerTries -= 1;
-        triesCounter.innerText = playerTries;
-        console.log('try again')
+        displayQuestion();
+        console.log('correct!')  
+        } else if (playerAnswer === levelTwoArr[randomNum].answer) {
+            playerLevelToNum += 1;
+            levelCounter.innerText = playerLevelToNum;
+            playerInput.value = '';
+            displayQuestion();
+            console.log('correct again!');
+        } else if (playerAnswer === levelThreeArr[randomNum].answer) {
+            playerLevelToNum += 1;
+            levelCounter.innerText = playerLevelToNum;
+            playerInput.value = '';
+            displayQuestion();
+            console.log('correct for three!');
+        } else if (playerAnswer === levelFourArr[randomNum].answer) {
+            playerLevelToNum += 1;
+            levelCounter.innerText = playerLevelToNum;
+            playerInput.value = '';
+            displayQuestion();
+            console.log('correct for four!');
+        } else if (playerAnswer === levelFiveArr[randomNum].answer) {
+            playerLevelToNum += 1;
+            levelCounter.innerText = playerLevelToNum;
+            playerInput.value = '';
+            displayQuestion();
+            console.log('correct for five!');
+        }
+        playerInput.focus();
     }
-}
 
 function handleLoss() {
     //if tries reaches 0 the game is over
@@ -100,3 +214,6 @@ function handleLoss() {
 //user clicks the submit button and checks so see if the answer belongs to that object
 playerInput.addEventListener('keyup', handlePlayerInput);
 submitBtn.addEventListener('click', handleSubmit);
+submitForm.addEventListener('submit', e => {
+    e.preventDefault();
+})
