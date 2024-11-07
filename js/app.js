@@ -216,7 +216,7 @@ function handleLoss() {
             restartBtn.setAttribute('id', 'restart-button');
             restartBtn.innerText = 'Play Again?'
             gameOverMsg.setAttribute('id', 'game-over-message');
-            gameOverMsg.innerText = 'GameOver!';
+            gameOverMsg.innerText = `GameOver! You made it to level ${playerLevelToNum} out of 5`;
             gameOverContainer.setAttribute('id', 'game-over-container');
             gameOverContainer.classList.remove('hidden');
             body.appendChild(gameOverContainer);
