@@ -9,19 +9,34 @@
 <body>
     <header>
         <nav>
-            <button>Restart</button>
+            <button class="restart-game-btn hidden">Restart</button>
         </nav>
-        <h1>Word Challenge</h1>
-        <h2>Guess the word based on the description</h2>
-        <p>*Spelling and spacing count!</p>
+        <div class="title-container">
+            <h1>Word Challenge</h1>
+            <h2>Guess the word based on the description</h2>
+        </div>
+        <div class="rules-container">
+            <p>Spelling and spacing count!</p>
+            <p>How to play:</p>
+            <ul id="rules-list">
+                <li>Type your answer in the input box</li>
+                <li>Every correct answer increases your level</li>
+                <li>Lose all your "Tries"and the game is over</li>
+                <li>Reach Level 5 and you win!</li>
+                <li>Goodluck!</li>
+            </ul>
+        </div>
     </header>
-    <main class="game-area">
+    <main class="game-area hidden">
         <div class="player-level">
-            <h3>Level:</h3>
-            <p class="level-counter"></p>
-            <h3>Tries:</h3>
-            <p class="tries-counter"></p>
-            <p class="message"></p>
+            <div class="level-container">
+                <h3>Level:</h3>
+                <p class="level-counter"></p>
+            </div>
+            <div class="tries-container">
+                <h3>Tries Left:</h3>
+                <p class="tries-counter"></p>
+            </div>
         </div>
         <div class="player-input-container">
             <form id="player-submit-form" action="">
