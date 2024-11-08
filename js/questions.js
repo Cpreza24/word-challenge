@@ -65,12 +65,12 @@ const questionsObj = [
         level: 4,
     },
     {
-        question: 'The first all electric production car',
-        answer: 'roadster',
+        question: 'The substance that lubricates a cars engine',
+        answer: 'oil',
         level: 4,
     },
     {
-        question: 'Car model offten referred to as the "Pony Car"',
+        question: 'Model from Ford thats often referred to as the "Pony Car"',
         answer: 'mustang',
         level: 4,
     },
