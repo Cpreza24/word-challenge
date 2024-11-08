@@ -8,7 +8,7 @@ const wordDescription = document.querySelector('.description');
 const levelCounter = document.querySelector('.level-counter');
 const triesCounter = document.querySelector('.tries-counter');
 const submitBtn = document.querySelector('#submit-button');
-const submitForm = document.querySelector('.player-submit-form');
+const submitForm = document.getElementById('player-submit-form');
 const randomNum = Math.floor(Math.random() * 3);
 const gameOverContainer = document.createElement('div');
 const restartBtn = document.createElement('button');
@@ -50,6 +50,12 @@ function init() {
 }
 
 init();
+
+function renderGame() {
+    levelCounter.innerText = 1;
+    triesCounter.innerText = 5;
+    //hides the game board and shows only the play button
+}
 
 // function showQuestion() {
 //     playerLevel = parseInt(levelCounter.innerText);
@@ -134,13 +140,6 @@ function displayQuestion() {
     }
 };
 
-
-function renderGame() {
-    levelCounter.innerText = 1;
-    triesCounter.innerText = 5;
-    //hides the game board and shows only the play button
-}
-
 const handlePlayerInput = e => {
     playerAnswer = e.target.value;
     //console.log(playerAnswer);
@@ -172,9 +171,10 @@ const handlePlayerInput = e => {
 //     }
 // }
 
-function handleSubmit(e) {
-    handlePlayerAnswer()
-    handleLoss();
+function handleSubmit() {
+    handlePlayerAnswer();
+    playerLoss();
+    playerWin();
 }
 
 function handlePlayerAnswer() {
@@ -189,6 +189,7 @@ function handlePlayerAnswer() {
         playerLevelToNum += 1;
         levelCounter.innerText = playerLevelToNum;
         playerInput.value = '';
+        playerAnswer = '';
         correctAnswer = true;
         displayQuestion();
         console.log(correctAnswer);
@@ -197,36 +198,50 @@ function handlePlayerAnswer() {
         playerTries -= 1;
         triesCounter.innerText = playerTries;
         playerInput.value = '';
-        console.log('try again')
+        playerAnswer = '';
+        console.log('try again', playerInput.innerHTML, playerAnswer);
     } else if (playerAnswer === '') {
         console.log('please enter an answer')
     }
     playerInput.focus();
 }
 
-function handleLoss() {
-    //if tries reaches 0 the game is over
-    //shows the user a game over message and what level they reached in the game.
-    //also shoes a Play Again? button that will start the game from the beginning.
-    //hides the game board behind the game over message
+function handleWinOrLose() {
+    restartBtn.setAttribute('id', 'restart-button');
+    restartBtn.innerText = 'Retry'
+    gameOverMsg.setAttribute('id', 'game-over-message');
+    gameOverMsg.innerText = `GameOver! You made it to level ${playerLevelToNum} out of 5`;
+    gameOverContainer.setAttribute('id', 'game-over-container');
+    gameOverContainer.classList.remove('hidden');
+    body.appendChild(gameOverContainer);
+    gameArea.classList.add('hidden');
+    gameOverContainer.appendChild(gameOverMsg);
+    gameOverContainer.appendChild(restartBtn);
+    console.log('Game Over!', gameOverMsg);
+    restartBtn.addEventListener('click', init);
+
+    if (playerTries === 0) {
+        gameOverMsg.innerText = `GameOver! You made it to level ${playerLevelToNum} out of 5`;
+        restartBtn.innerText = 'Retry';
+    } else if (levelCounter.innerText > 5) {
+        gameOverMsg.innerText = `You won with ${playerTries} trie(s) remaining!`;
+        restartBtn.innerText = 'Play Again';
+    }
+}
+
+function playerLoss() {
     if (playerTries > 0) {
         return;
-    }
-        else if (playerTries === 0) {
-            restartBtn.setAttribute('id', 'restart-button');
-            restartBtn.innerText = 'Play Again?'
-            gameOverMsg.setAttribute('id', 'game-over-message');
-            gameOverMsg.innerText = `GameOver! You made it to level ${playerLevelToNum} out of 5`;
-            gameOverContainer.setAttribute('id', 'game-over-container');
-            gameOverContainer.classList.remove('hidden');
-            body.appendChild(gameOverContainer);
-            gameArea.classList.add('hidden');
-            gameOverContainer.appendChild(gameOverMsg);
-            gameOverContainer.appendChild(restartBtn);
-            console.log('Game Over!', gameOverMsg);
-            restartBtn.addEventListener('click', init);
-        }
-}
+    } else if (playerTries === 0) {
+        handleWinOrLose();
+    };
+};
+
+function playerWin() {
+    if (levelCounter.innerText > 5) {
+        handleWinOrLose();
+    };
+};
 
 //Starts the game
 // function handleStartClick(e) {
