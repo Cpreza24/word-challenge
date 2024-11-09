@@ -1,13 +1,180 @@
-player-input-container {
+@media all and (max-width: 500px) {
+    body {
+        font-family: 'itim', sans-serif;
+        background-color: #E8DBC5;
+        color: red;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    h2 {
+        padding: 10%;
+        justify-content: center;
+        font-size: 1.2rem;
+    }
+
+    .rules-container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .restart-game-btn {
+        display: flex;
+        align-items: flex-start;
+        border: none;
+        padding: 5px;
+        font-family: 'itim', sans-serif;
+        background-color: #FD9E5F;
+        border-radius: 10%;
+    }
+
+    .title-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 300px;
+    }
+
+    .game-area {
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        background-color: green;
+    }
+    
+    .level-container {
+        min-width: 75px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .tries-container {
+        min-width: 75px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: baseline;
+    }
+
+    .player-level {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .player-input-container {
+        display: flex;
+        align-items: center;
+        padding-bottom: 10px;
+        flex-direction: column;
+    }
+
+    #input-box {
+        border: none;
+        border-radius: 10px;
+        height: 40px;
+        width: 200px;
+    }
+
+    #submit-button {
+        background-color: green;
+        border: none;
+        border-radius: 20px;
+        height: 40px;
+        width: 80px;
+    }
+
+    #play-button {
+        font-family: 'itim', sans-serif;
+        border: none;
+        padding: 15px;
+        border-radius: 10%;
+        margin-top: 30px;
+        background-color: red;
+    }
+
+}
+
+@media all and (min-width: 501px) {
+    body {
+        color: green;
+        background-color: #E8DBC5;
+        font-family: 'itim', sans-serif;
+    }
+}
+
+main {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+.player-input-container {
     background-color: blue;
     display: flex;
     justify-content: l;
-
+    
 }
 
 word-description-container {
     background-color: orange;
     display: flex;
+}
+
+.nav-bar-container {
+    display: flex;
+    margin: auto;
+    height: 45px;
+}
+
+.restart-game-btn {
+    border: none;
+    padding: 5px;
+    font-family: 'itim', sans-serif;
+    background-color: #FD9E5F;
+    border-radius: 10%;
+}
+
+.restart-game-btn:hover {
+    background-color: #D46013;
+}
+
+.cancel-restart-btn {
+    font-family: 'itim', sans-serif;
+    display: flex;
+    margin:  5px;
+    background-color: #50AC53;
+}
+
+.cancel-restart-btn:hover {
+    background-color: #33D139;
+}
+
+.verify-restart-btn {
+    font-family: 'itim', sans-serif;
+    background-color: #D97171;
+    display: flex;
+    margin:  5px;
+}
+
+.verify-restart-btn:hover {
+    background-color: #DB2D2D;
+}
+
+.restart-game-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .game-area {

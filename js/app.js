@@ -27,6 +27,7 @@ let levelFiveArr = [];
 
 let randomNum;
 let correctAnswer = false;
+let answeredQuestion;
 let playerLevelToNum;
 let playerTries = 5;
 let playerAnswer = '';
@@ -191,16 +192,25 @@ function handleSubmit() {
 function rightOrWongAnswerMsg() {
     const answerMsg = document.createElement('p');
     answerMsg.setAttribute('id', 'answer-msg');
+
+    if (playerInput.innerText === '' && answeredQuestion === false) {
+        answerMsg.innerText = 'Enter an answer!';
+        descriptionContainer.appendChild(answerMsg);
+    }
+
     if (correctAnswer) {
         answerMsg.innerText = 'Correct!';
         descriptionContainer.appendChild(answerMsg);
-    } else {
+        correctAnswer = false;
+    } else if (correctAnswer !== true && answeredQuestion === true) {
         answerMsg.innerText = 'Incorrect, try again.';
         descriptionContainer.appendChild(answerMsg);
+        console.log(playerInput, answeredQuestion);
     };
 
     setTimeout(() => {
         answerMsg.remove();
+        answeredQuestion = false;
     }, 1500);
 }
 
@@ -218,17 +228,20 @@ function handlePlayerAnswer() {
         playerInput.value = '';
         playerAnswer = '';
         correctAnswer = true;
+        answeredQuestion = true;
         displayQuestion();
-        console.log(correctAnswer);
+        console.log(correctAnswer, answeredQuestion);
     } else if (lowerCaseAnswer !== filteredQuestions[randomNum].answer && playerAnswer !== ''){
         correctAnswer = false;
+        answeredQuestion = true;
         playerTries -= 1;
         triesCounter.innerText = playerTries;
         playerInput.value = '';
         playerAnswer = '';
-        console.log(correctAnswer);
+        console.log(correctAnswer, answeredQuestion);
     } else if (playerAnswer === '') {
-        console.log('please enter an answer')
+        answeredQuestion = false;
+        console.log(answeredQuestion);
     }
     playerInput.focus();
 }

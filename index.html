@@ -3,20 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <title>Word Challenge</title>
 </head>
 <body>
     <header>
-        <nav>
-            <button class="restart-game-btn hidden">Restart</button>
-        </nav>
+        <div class="nav-bar-container">
+            <nav>
+                <button class="restart-game-btn hidden">Restart</button>
+            </nav>
+        </div>
         <div class="title-container">
             <h1>Word Challenge</h1>
             <h2>Guess the word based on the description</h2>
         </div>
         <div class="rules-container">
-            <p>Spelling and spacing count!</p>
             <p>How to play:</p>
             <ul id="rules-list">
                 <li>Type your answer in the input box</li>
@@ -24,6 +28,7 @@
                 <li>Lose all your "Tries"and the game is over</li>
                 <li>Reach Level 5 and you win!</li>
             </ul>
+            <p>*Spelling and spacing count!</p>
         </div>
     </header>
     <main class="game-area hidden">
@@ -33,13 +38,15 @@
                 <p class="level-counter"></p>
             </div>
             <div class="tries-container">
-                <h3>Tries Left:</h3>
+                <h3>Tries:</h3>
                 <p class="tries-counter"></p>
             </div>
         </div>
         <div class="player-input-container">
+            <p>Type your answer below</p>
             <form id="player-submit-form" action="">
-                <input class="player-input" type="text" placeholder="Answer"></input>
+                <!-- <label for="input-box">Type your answer below</label> -->
+                <input id="input-box" class="player-input" type="text" placeholder="Answer"></input>
                 <input id="submit-button" type="submit"></input>
             <!-- <button id="submit-button">Submit btn</button> -->
             </form>
