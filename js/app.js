@@ -203,7 +203,7 @@ function rightOrWongAnswerMsg() {
         descriptionContainer.appendChild(answerMsg);
         correctAnswer = false;
     } else if (correctAnswer !== true && answeredQuestion === true) {
-        answerMsg.innerText = 'Incorrect, try again.';
+        answerMsg.innerText = `Incorrect, try again. ${playerTries} trie(s) left`;
         descriptionContainer.appendChild(answerMsg);
         console.log(playerInput, answeredQuestion);
     };
@@ -211,7 +211,7 @@ function rightOrWongAnswerMsg() {
     setTimeout(() => {
         answerMsg.remove();
         answeredQuestion = false;
-    }, 1500);
+    }, 2000);
 }
 
 function handlePlayerAnswer() {
@@ -310,14 +310,16 @@ function handleRestartGame() {
     const verifyRestartBtn = document.createElement('button');
     const cancelRestartBtn = document.createElement('button');
     const restartGameContainer = document.createElement('div');
+    const restartGameMsg = document.createElement('p');
     restartGameContainer.setAttribute('class', 'restart-game-container');
     cancelRestartBtn.setAttribute('class', 'cancel-restart-btn');
     verifyRestartBtn.setAttribute('class', 'verify-restart-btn');
-    gameOverMsg.innerText = 'Are you sure?'
+    restartGameMsg.setAttribute('id', 'restart-question')
+    restartGameMsg.innerText = 'Are you sure?'
     verifyRestartBtn.innerText = 'Yes';
     cancelRestartBtn.innerText = 'No'
     navBar.appendChild(restartGameContainer);
-    restartGameContainer.appendChild(gameOverMsg);
+    restartGameContainer.appendChild(restartGameMsg);
     restartGameContainer.appendChild(verifyRestartBtn);
     restartGameContainer.appendChild(cancelRestartBtn);
 

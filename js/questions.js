@@ -55,7 +55,7 @@ const questionsObj = [
         level: 3,
     },
     {
-        question: 'Rollercoaster type ride at disney\'s Tomorrowloand',
+        question: 'Rollercoaster type ride at disney\'s Tomorrowland',
         answer: 'space mountain',
         level: 3,
     },
@@ -95,7 +95,7 @@ const questionsObj = [
         level: 5,
     },
     {
-        question: 'main circuit board in a pc',
+        question: 'Main circuit board in a pc',
         answer: 'motherboard',
         level: 5,
     },
