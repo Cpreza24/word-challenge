@@ -49,7 +49,6 @@ function init() {
     gameOverContainer.remove();
     levelCounter.innerText = 1;
     triesCounter.innerText = playerTries;
-    playerInput.focus();
     renderGame();
     displayQuestion();
 };
@@ -174,7 +173,6 @@ function handlePlayerAnswer() {
         answeredQuestion = false;
         disableSubmit();
     }
-    playerInput.focus();
 };
 
 function handleWinOrLose() {
