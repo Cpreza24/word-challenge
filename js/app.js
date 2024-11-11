@@ -1,5 +1,4 @@
 import { questionsObj } from './questions.js';
-//console.log(levelTwoQuestions);
 
 const body = document.querySelector('body');
 const navBar = document.querySelector('nav');
@@ -33,7 +32,7 @@ let playerTries = 5;
 let playerAnswer = '';
 
 // shows the user a play button when the game is loaded and clears any previous inputs and levels
-// restarts the game starting from level 1 and tries resets. 
+// restarts the game starting from level 1 and tries resets to 5. 
 function init() {
     randomNum = Math.floor(Math.random() * 4);
     playerTries = 5;
@@ -50,178 +49,110 @@ function init() {
     gameOverContainer.remove();
     levelCounter.innerText = 1;
     triesCounter.innerText = playerTries;
-    console.log('game start');
     playerInput.focus();
     renderGame();
     displayQuestion();
-}
+};
 
-//init();
 
 function renderGame() {
     levelCounter.innerText = 1;
     triesCounter.innerText = 5;
-    //hides the game board and shows only the play button
-}
+};
 
-// function showQuestion() {
-//     playerLevel = parseInt(levelCounter.innerText);
-//     if (playerLevel === 1) {
-//         //let levelOne = levelOneQuestions.map((ques, index) => {ques[index]}) 
-//         //console.log(levelOne);
-//         wordDescription.innerText = levelOneQuestions[randomNum - 1].question;
-//     } else if (playerLevel === 2) {
-//         //wordDescription.innerText = levelTwoQuestions[randomNum - 1].question
-//     }
-// };
-
-// function showQuestion() {
-//     playerLevelToNum = parseInt(levelCounter.innerText);
-//     questionsObj.forEach((ques) => {
-//     //levelOneArr = [];
-//         //console.log(question);
-//         if (playerLevelToNum === 1) {
-//             if (ques.level === 1) {
-//                 levelOneArr.push(ques);
-//                 wordDescription.innerText = levelOneArr;
-//                 console.log(levelOneArr);
-//             };
-//         } else if (playerLevelToNum === 2) {
-//             if (question.level === 2) {
-//                 console.log(question);
-//             }
-//         }
-//     })
-// }
-
-// const getRandomNum = function() {
-//     return Math.floor(Math.random() * 3);
-// }
-
+//push the objects with the corresponding level into the levelsQuestions array
 function displayQuestion() {
     playerLevelToNum = parseInt(levelCounter.innerText);
-    //console.log(playerLevelToNum)
     if (playerLevelToNum === 1) {
-      //push the objects with a level of 1 into the levelsQuestions array
         for (const ques of questionsObj) {
             if (ques.level === 1) {
             levelOneArr.push(ques);
-        }
-        //console.log(levelQuestions.length);
-        }
-        wordDescription.innerText = levelOneArr[randomNum].question
-        //console.log(levelOneArr[randomNum].answer);
+            };
+        };
+        wordDescription.innerText = levelOneArr[randomNum].question;
     } else if (playerLevelToNum === 2) {
-      //levelOneArr = [];
         for (const ques of questionsObj) {
-        //levelsQuestions = [];
         if (ques.level === 2) {
-            levelTwoArr.push(ques) 
-        }
-        }
-        wordDescription.innerText = levelTwoArr[randomNum].question
-        //console.log(wordDescription.innerText, levelTwoArr);
+            levelTwoArr.push(ques);
+            };
+        };
+        wordDescription.innerText = levelTwoArr[randomNum].question;
     } else if (playerLevelToNum === 3) {
         for (const ques of questionsObj) {
-        //levelsQuestions = [];
         if (ques.level === 3) {
-            levelThreeArr.push(ques) 
-        }
-        }
-        wordDescription.innerText = levelThreeArr[randomNum].question
-        //console.log(wordDescription.innerText, levelThreeArr);
+            levelThreeArr.push(ques); 
+            };
+        };
+        wordDescription.innerText = levelThreeArr[randomNum].question;
     } else if (playerLevelToNum === 4) {
         for (const ques of questionsObj) {
-        //levelsQuestions = [];
         if (ques.level === 4) {
-            levelFourArr.push(ques) 
-        }
-        }
-        wordDescription.innerText = levelFourArr[randomNum].question
-        //console.log(wordDescription.innerText, levelThreeArr);
+            levelFourArr.push(ques); 
+            };
+        };
+        wordDescription.innerText = levelFourArr[randomNum].question;
     } else if (playerLevelToNum === 5) {
         for (const ques of questionsObj) {
-        //levelsQuestions = [];
         if (ques.level === 5) {
-            levelFiveArr.push(ques) 
-        }
-        }
-        wordDescription.innerText = levelFiveArr[randomNum].question
-        console.log(wordDescription.innerText, levelFiveArr);
-    }
+            levelFiveArr.push(ques); 
+            };
+        };
+        wordDescription.innerText = levelFiveArr[randomNum].question;
+    };
 };
 
 const handlePlayerInput = e => {
     playerAnswer = e.target.value;
-    //console.log(playerAnswer);
-    //playerInput.value = ''
     return playerAnswer;
-}
+};
 
-//check to see if the string in the input mathches the object answer
-//conditional to see if the string value of playerAnswer is equal to the question thats displayed answer
 
-//When the player submits the correct answer, the level increases and the level two questions are displayed. 
-// function handleSubmit() {
-//     console.log(playerAnswer, playerInput.value);
-//     let lowerCaseAnswer = playerAnswer.toLowerCase();
-//     if (lowerCaseAnswer === levelOneQuestions[randomNum - 1].answer && playerInput.value !== '') {
-//         playerInput.value = '';
-//         playerAnswer = '';
-//         console.log(playerInput.value);
-//         playerLevelToNum += 1;
-//         levelCounter.innerText = playerLevelToNum;
-//         showQuestion();
-//         console.log(playerLevelToNum, 'correct!');
-//     } else if (lowerCaseAnswer !== levelOneQuestions[randomNum - 1].answer || playerInput.value === '') {
-//         playerInput.value = '';
-//         playerAnswer = '';
-//         playerTries -= 1;
-//         playerLevel.innerText = playerTries;
-//         console.log('try again')
-//     }
-// }
-
+//handles when the player submits the form
 function handleSubmit() {
     handlePlayerAnswer();
     playerLoss();
     playerWin();
     rightOrWongAnswerMsg();
-}
+};
 
 function rightOrWongAnswerMsg() {
     const answerMsg = document.createElement('p');
-    answerMsg.setAttribute('id', 'answer-msg');
 
     if (playerInput.innerText === '' && answeredQuestion === false) {
+        answerMsg.setAttribute('id', 'empty-answer-msg');
         answerMsg.innerText = 'Enter an answer!';
         descriptionContainer.appendChild(answerMsg);
-    }
+    };
 
     if (correctAnswer) {
+        answerMsg.setAttribute('id', 'correct-answer-msg');
         answerMsg.innerText = 'Correct!';
         descriptionContainer.appendChild(answerMsg);
         correctAnswer = false;
     } else if (correctAnswer !== true && answeredQuestion === true) {
-        answerMsg.innerText = `Incorrect, try again. ${playerTries} trie(s) left`;
+        answerMsg.setAttribute('id', 'incorrect-answer-msg');
+        answerMsg.innerText = `Incorrect. ${playerTries} trie(s) left`;
         descriptionContainer.appendChild(answerMsg);
-        console.log(playerInput, answeredQuestion);
     };
 
     setTimeout(() => {
         answerMsg.remove();
         answeredQuestion = false;
     }, 2000);
-}
+};
+
+function disableSubmit() {
+    setTimeout(() => {
+        submitBtn.disabled = true;
+    });
+    setTimeout(() => {
+        submitBtn.disabled = false;
+    }, 2000);
+};
 
 function handlePlayerAnswer() {
     let lowerCaseAnswer = playerAnswer.toLowerCase();
-    //handleCorrectAnswer();
-    // filter the questionsObj to include only the level 1 questions. 
-    // display the level 1 object. 
     const filteredQuestions = questionsObj.filter(q => q.level === playerLevelToNum);
-    console.log(`answer: ${filteredQuestions[randomNum].answer}`);
-    //compate the displayed question to the answer of that object.
     if (lowerCaseAnswer === filteredQuestions[randomNum].answer) {
         playerLevelToNum += 1;
         levelCounter.innerText = playerLevelToNum;
@@ -229,8 +160,8 @@ function handlePlayerAnswer() {
         playerAnswer = '';
         correctAnswer = true;
         answeredQuestion = true;
+        disableSubmit();
         displayQuestion();
-        console.log(correctAnswer, answeredQuestion);
     } else if (lowerCaseAnswer !== filteredQuestions[randomNum].answer && playerAnswer !== ''){
         correctAnswer = false;
         answeredQuestion = true;
@@ -238,18 +169,17 @@ function handlePlayerAnswer() {
         triesCounter.innerText = playerTries;
         playerInput.value = '';
         playerAnswer = '';
-        console.log(correctAnswer, answeredQuestion);
+        disableSubmit();
     } else if (playerAnswer === '') {
         answeredQuestion = false;
-        console.log(answeredQuestion);
+        disableSubmit();
     }
     playerInput.focus();
-}
+};
 
 function handleWinOrLose() {
     restartBtn.setAttribute('id', 'restart-button');
     restartBtn.innerText = 'Retry'
-    gameOverMsg.setAttribute('id', 'game-over-message');
     gameOverMsg.innerText = `GameOver! You made it to level ${playerLevelToNum} out of 5`;
     gameOverContainer.setAttribute('id', 'game-over-container');
     gameOverContainer.classList.remove('hidden');
@@ -257,21 +187,20 @@ function handleWinOrLose() {
     gameArea.classList.add('hidden');
     gameOverContainer.appendChild(gameOverMsg);
     gameOverContainer.appendChild(restartBtn);
-    console.log('Game Over!', gameOverMsg);
     restartBtn.addEventListener('click', init);
-
+    
     if (playerTries === 0) {
+        gameOverMsg.setAttribute('id', 'player-lost-message');
         gameOverMsg.innerText = `GameOver! You made it to level ${playerLevelToNum} out of 5`;
         restartBtn.innerText = 'Retry';
         randomNum;
-        //getRandomNum();
     } else if (levelCounter.innerText > 5) {
+        gameOverMsg.setAttribute('id', 'player-won-message');
         gameOverMsg.innerText = `You won with ${playerTries} trie(s) remaining!`;
         restartBtn.innerText = 'Play Again';
         randomNum;
-        //getRandomNum();
-    }
-}
+    };
+};
 
 function playerLoss() {
     if (playerTries > 0) {
@@ -295,16 +224,10 @@ function handleStartClick(e) {
         header.classList.remove('hidden');
         playGameButton.classList.add('hidden');
         restartGameBtn.classList.remove('hidden');
-        //rules.classList.add('hidden');
         init();
-    }
-}
+    };
+};
 
-//user clicks restart button
-//Message displays in the nav "Are you sure?"
-//two buttons display, one yes one no
-//yes button starts the game over calling init
-//no button removes the two buttons from the dom returns out of the function
 function handleRestartGame() {
     restartGameBtn.classList.add('hidden');
     const verifyRestartBtn = document.createElement('button');
@@ -314,10 +237,10 @@ function handleRestartGame() {
     restartGameContainer.setAttribute('class', 'restart-game-container');
     cancelRestartBtn.setAttribute('class', 'cancel-restart-btn');
     verifyRestartBtn.setAttribute('class', 'verify-restart-btn');
-    restartGameMsg.setAttribute('id', 'restart-question')
-    restartGameMsg.innerText = 'Are you sure?'
+    restartGameMsg.setAttribute('id', 'restart-question');
+    restartGameMsg.innerText = 'Are you sure?';
     verifyRestartBtn.innerText = 'Yes';
-    cancelRestartBtn.innerText = 'No'
+    cancelRestartBtn.innerText = 'No';
     navBar.appendChild(restartGameContainer);
     restartGameContainer.appendChild(restartGameMsg);
     restartGameContainer.appendChild(verifyRestartBtn);
@@ -329,7 +252,7 @@ function handleRestartGame() {
             restartGameContainer.remove();
             restartGameBtn.classList.remove('hidden');
             init();
-        }
+        };
     });
 
     cancelRestartBtn.addEventListener('click', e => {
@@ -337,15 +260,10 @@ function handleRestartGame() {
         if(noBtn) {
             restartGameContainer.remove();
             restartGameBtn.classList.remove('hidden');
-        }
+        };
     });
+};
 
-}
-
-
-
-// user types an answer and logs the value to the console.``
-//user clicks the submit button and checks so see if the answer belongs to that object
 playGameButton.addEventListener('click', handleStartClick);
 restartGameBtn.addEventListener('click', handleRestartGame);
 playerInput.addEventListener('keyup', handlePlayerInput);

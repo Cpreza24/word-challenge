@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Word Challenge</title>
+    <title>Trivia Challenge</title>
 </head>
 <body>
     <header>
@@ -17,11 +17,11 @@
             </nav>
         </div>
         <div class="title-container">
-            <h1>Word Challenge</h1>
+            <h1>Trivia Challenge</h1>
             <h2>Guess the word based on the description</h2>
         </div>
         <div class="rules-container">
-            <p>How to play:</p>
+            <p class="rules-description">How to play:</p>
             <ul id="rules-list">
                 <li>Type your answer in the input box</li>
                 <li>Every correct answer increases your level</li>
@@ -56,7 +56,9 @@
             </form>
         </div>
     </main>
-    <button id="play-button">PLAY</button>
+    <div class="play-btn-container">
+        <button id="play-button">PLAY</button>
+    </div>
     
     <script src="./js/app.js" type="module"></script>
 </body>
