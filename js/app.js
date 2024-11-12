@@ -3,7 +3,7 @@ import { questionsObj } from './questions.js';
 const body = document.querySelector('body');
 const navBar = document.querySelector('nav');
 const header = document.querySelector('header');
-const gameArea = document.querySelector('.game-area'); 
+const gameArea = document.querySelector('.game-area');
 const playGameButton = document.getElementById('play-button');
 const wordDescription = document.querySelector('.description');
 const descriptionContainer = document.querySelector('.word-description-container');
@@ -65,35 +65,35 @@ function displayQuestion() {
     if (playerLevelToNum === 1) {
         for (const ques of questionsObj) {
             if (ques.level === 1) {
-            levelOneArr.push(ques);
+                levelOneArr.push(ques);
             };
         };
         wordDescription.innerText = levelOneArr[randomNum].question;
     } else if (playerLevelToNum === 2) {
         for (const ques of questionsObj) {
-        if (ques.level === 2) {
-            levelTwoArr.push(ques);
+            if (ques.level === 2) {
+                levelTwoArr.push(ques);
             };
         };
         wordDescription.innerText = levelTwoArr[randomNum].question;
     } else if (playerLevelToNum === 3) {
         for (const ques of questionsObj) {
-        if (ques.level === 3) {
-            levelThreeArr.push(ques); 
+            if (ques.level === 3) {
+                levelThreeArr.push(ques);
             };
         };
         wordDescription.innerText = levelThreeArr[randomNum].question;
     } else if (playerLevelToNum === 4) {
         for (const ques of questionsObj) {
-        if (ques.level === 4) {
-            levelFourArr.push(ques); 
+            if (ques.level === 4) {
+                levelFourArr.push(ques);
             };
         };
         wordDescription.innerText = levelFourArr[randomNum].question;
     } else if (playerLevelToNum === 5) {
         for (const ques of questionsObj) {
-        if (ques.level === 5) {
-            levelFiveArr.push(ques); 
+            if (ques.level === 5) {
+                levelFiveArr.push(ques);
             };
         };
         wordDescription.innerText = levelFiveArr[randomNum].question;
@@ -151,8 +151,9 @@ function disableSubmit() {
 
 function handlePlayerAnswer() {
     let lowerCaseAnswer = playerAnswer.toLowerCase();
+    const trimmLowerAnswer = lowerCaseAnswer.trim();
     const filteredQuestions = questionsObj.filter(q => q.level === playerLevelToNum);
-    if (lowerCaseAnswer === filteredQuestions[randomNum].answer) {
+    if (trimmLowerAnswer === filteredQuestions[randomNum].answer) {
         playerLevelToNum += 1;
         levelCounter.innerText = playerLevelToNum;
         playerInput.value = '';
@@ -161,7 +162,7 @@ function handlePlayerAnswer() {
         answeredQuestion = true;
         disableSubmit();
         displayQuestion();
-    } else if (lowerCaseAnswer !== filteredQuestions[randomNum].answer && playerAnswer !== ''){
+    } else if (trimmLowerAnswer !== filteredQuestions[randomNum].answer && trimmLowerAnswer !== '') {
         correctAnswer = false;
         answeredQuestion = true;
         playerTries -= 1;
@@ -186,7 +187,7 @@ function handleWinOrLose() {
     gameOverContainer.appendChild(gameOverMsg);
     gameOverContainer.appendChild(restartBtn);
     restartBtn.addEventListener('click', init);
-    
+
     if (playerTries === 0) {
         gameOverMsg.setAttribute('id', 'player-lost-message');
         gameOverMsg.innerText = `GameOver! You made it to level ${playerLevelToNum} out of 5`;
@@ -255,7 +256,7 @@ function handleRestartGame() {
 
     cancelRestartBtn.addEventListener('click', e => {
         const noBtn = e.target;
-        if(noBtn) {
+        if (noBtn) {
             restartGameContainer.remove();
             restartGameBtn.classList.remove('hidden');
         };
