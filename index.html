@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>Trivia Challenge</title>
 </head>
+
 <body>
     <header>
         <div class="nav-bar-container">
@@ -21,13 +23,15 @@
             <h2>Guess the word based on the description</h2>
         </div>
         <div class="rules-container">
-            <p class="rules-description">How to play:</p>
-            <ul id="rules-list">
-                <li>Type your answer in the input box</li>
-                <li>Every correct answer increases your level</li>
-                <li>Lose all your "Tries"and the game is over</li>
-                <li>Reach Level 5 to win!</li>
-            </ul>
+            <div>
+                <p class="rules-description">How to play:</p>
+                <ul id="rules-list">
+                    <li>Type your answer in the input box</li>
+                    <li>Every correct answer increases your level</li>
+                    <li>Lose all your "Tries"and the game is over</li>
+                    <li>Reach Level 5 to win!</li>
+                </ul>
+            </div>
             <p>*Spelling and spacing count!</p>
         </div>
     </header>
@@ -52,14 +56,15 @@
                 <!-- <label for="input-box">Type your answer below</label> -->
                 <input id="input-box" class="player-input" type="text" placeholder="Answer"></input>
                 <input id="submit-button" type="submit"></input>
-            <!-- <button id="submit-button">Submit btn</button> -->
+                <!-- <button id="submit-button">Submit btn</button> -->
             </form>
         </div>
     </main>
     <div class="play-btn-container">
         <button id="play-button">PLAY</button>
     </div>
-    
+
     <script src="./js/app.js" type="module"></script>
 </body>
+
 </html>
